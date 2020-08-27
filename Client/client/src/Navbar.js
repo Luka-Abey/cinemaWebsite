@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import 'bootstrap/dist/css/bootstrap.css';
 import React,{Component} from 'react';
 import './App.css';
@@ -31,14 +30,4 @@ export default class Navbar extends Component{
         )
     }   
 }
-=======
-import React from 'react';
 
-function Navbar() {
-    return <div />;
-
-
-}
-
-export default Navbar;
->>>>>>> 175292154be3a0a9116394f7913c5991ae9d8abd
