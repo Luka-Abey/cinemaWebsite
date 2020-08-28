@@ -12,12 +12,10 @@ router.get('/', (req, res) => {
 });
 
 // POST request to api/items, public access
-router.post('/', (req, res) => {
-    const newMovie = new Movie({
-        name: req.body.name
-    });
+router.post('/', ({body}, res) => {
+    const newMovie = new Movie(body);
     newMovie.save()
-        .then(item => res.json(item));
+        .then(movie => res.json(movie));
 });
 
 // DELETE request to api/items, public access
