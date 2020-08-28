@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const movies = require('./api/movies');
-const bookings = require('./api/bookings')
+const comments = require('./api/comments');
+// const bookings = require('./api/bookings')
 const app = express();
 
 // needed for bodyparser
@@ -17,7 +18,8 @@ mongoose
 
 // to use routes
 app.use('/api/movies', movies);
-app.use('/api/bookings', bookings);
+app.use('/api/comments', comments);
+// app.use('/api/bookings', bookings);
 
 const port = process.env.PORT || 5000;
 

@@ -3,16 +3,14 @@ const Schema = mongoose.Schema;
 
 const MovieSchema = new Schema({
     title: String,
-    price: String,
-    location: [{
-        aisle: Number,
-        shelf: Number
-    }],
-    dateAdded: {
-        type: Date,
-        default: Date.now
-    },
-    onSale: Boolean
+    genre: String,
+    cast : String,
+    runningTime : Number,
+    director : String,
+    language : String,
+    ageRating : String,
+    description : String,
+    showTime : String
 });
 
 module.exports = Movie = mongoose.model('movie', MovieSchema);
