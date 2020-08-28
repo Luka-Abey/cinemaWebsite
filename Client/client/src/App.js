@@ -1,17 +1,16 @@
-import React from 'react';
-import './App.css';
-import Navbar from './Navbar.js';
-import Homebody from './Homebody.js';
-import Footer from './Footer.js';
+import React from "react";
+import "./App.css";
+import Navbar from "./Navbar.js";
+import Homebody from "./Homebody.js";
+import Footer from "./Footer.js";
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-      <Homebody/>
+      <Navbar />
+      <Homebody />
       {/* <Profilebody/> */}
-      <Footer/>
-
+      <Footer />
     </div>
   );
 }
