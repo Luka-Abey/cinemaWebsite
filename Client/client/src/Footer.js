@@ -8,7 +8,7 @@ export default class Footer extends Component{
             <div class="container-fluid" style={{backgroundColor: "black", color: "white", paddingTop: "80px", paddingBottom: "80px"}}>
                 <div class="row">
                     <div class="col">
-                    <img src="media/logo.png" style={{width: "150px", height: "70px"}} alt="QA Cinema"/>
+                    <img src="../media/logo.png" style={{width: "150px", height: "70px"}} alt="QA Cinema"/>
                     </div>
                     <div class="col">
                         Opening times:<br/>

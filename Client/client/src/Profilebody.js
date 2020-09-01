@@ -1,9 +1,10 @@
-import React from "react";
-import "./App.css";
-import { render } from "react-dom";
+import 'bootstrap/dist/css/bootstrap.css';
+import React,{Component} from 'react';
+import axios from 'axios';
+import './App.css';
+import {Link} from 'react-router-dom';
 import Navbar from './Navbar.js'
 import Footer from './Footer.js'
-import axios from 'axios';
 
 class Comment extends React.Component {
   state = {
@@ -11,7 +12,10 @@ class Comment extends React.Component {
     }
 
   componentDidMount() {
-		axios.get(`http://localhost:5000/api/movies`)
+    window.scrollTo(0, 0)
+    const ID = this.props.match.params.id
+    console.log(this.props)
+		axios.get(`http://localhost:5000/api/movies/${ID}`)
 		  .then(res => {
 			const movies = res.data;
 			this.setState({ movies });
@@ -22,46 +26,42 @@ class Comment extends React.Component {
     return (
       <div>
         <Navbar></Navbar>
-        <div
-          class="container-fluid"
-          style={{
-            backgroundColor: "black",
-            color: "white",
-            paddingTop: "80px",
-            paddingBottom: "80px",
-          }}
-        >
-          {this.state.records.map((data) => (
+        <div class="container-fluid" style={{backgroundColor: "black", color: "white", paddingTop: "80px", paddingBottom: "80px",}}>
             <div class="row" style={{ paddingLeft: "30px" }}>
               <div class="col-4">
-                <img
-                  src={data.image}
-                  style={{ hight: "700px", width: "400px" }}
-                  alt="Wallpaper"
+                <img src={`../${this.state.movies.image}`} style={{ height: "700px", width: "400px" }}
+                  alt={this.state.movies.title}
                 />
               </div>
               <div class="col-5">
-                {data.description}
+                {this.state.movies.description}
                 <br />
               </div>
               <div class="col-3">
-                <h2>{data.name}</h2>
+                <h2>{this.state.movies.title}</h2>
                 <br />
-                Releasing on: <br />
-                {data.releaseDate}
+                Age Rating: <br />
+                {this.state.movies.ageRating}
                 <br />
                 <br />
                 Actors: <br />
-                {data.actors}
+                {this.state.movies.cast}
                 <br />
                 <br />
-                Producer: <br />
-                {data.Producer}
+                Director: <br />
+                {this.state.movies.director}
+                <br />
+                <br />
+                Genre: <br />
+                {this.state.movies.genre}
+                <br />
+                <br />
+                Duration: <br />
+                {this.state.movies.runningTime} minites
                 <br />
                 <br />
               </div>
             </div>
-          ))}
         </div>
         <div style={{ backgroundColor: "black", color: "white" }}>
           <center>
