@@ -11,6 +11,11 @@ router.get('/', (req, res) => {
         .then(movies => res.json(movies));
 });
 
+router.get('/:id', (req, res) => {
+    Movie.findById(req.params.id)
+        .then(movies => res.json(movies));
+})
+
 // POST request to api/items, public access
 router.post('/', ({body}, res) => {
     const newMovie = new Movie(body);
