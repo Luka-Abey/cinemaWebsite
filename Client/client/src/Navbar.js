@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import React, { Component } from "react";
 import "./App.css";
 
+
 export default class Navbar extends Component {
   render() {
     return (
@@ -63,6 +64,7 @@ export default class Navbar extends Component {
                 Contact Us
               </a>
             </li>
+            
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input

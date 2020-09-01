@@ -101,6 +101,38 @@ export default class Homebody extends Component {
             </div>
           ))}
         </div>
+        <div class="row-cols-4">
+          <table class="table">
+            <thead>
+              <tr style={{color:"white"}}>
+                <th>Rating</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style={{color:"white"}}>
+                <td><img src="https://www.bbfc.co.uk/sites/default/files/styles/40x40/public/certificate/BBFC%20U_RGB.png?itok=fZ7cfPWu" alt="U"/></td>
+                <td>Suitable for all</td>
+              </tr>
+			  <tr style={{color:"white"}}>
+                <td><img src="https://www.bbfc.co.uk/sites/default/files/styles/40x40/public/certificate/BBFC%20PG_RGB.png?itok=XxkIcivK" alt="PG"/></td>
+                <td>Parental guidance</td>
+              </tr>
+			  <tr style={{color:"white"}}>
+                <td><img src="https://www.bbfc.co.uk/sites/default/files/styles/40x40/public/certificate/BBFC%2012_RGB.png?itok=HeSBv5Eq" alt="12"/></td>
+                <td>Suitable for 12 years and over</td>
+              </tr>
+			  <tr style={{color:"white"}}>
+                <td><img src="https://www.bbfc.co.uk/sites/default/files/styles/40x40/public/certificate/BBFC%2015_RGB.png?itok=T_wfBFNq" alt="15"/></td>
+                <td>Suitable for 15 years and over</td>
+              </tr>
+			  <tr style={{color:"white"}}>
+                <td><img src="https://www.bbfc.co.uk/sites/default/files/styles/40x40/public/certificate/BBFC%2018_RGB.png?itok=0LQNod9r" alt="18"/></td>
+                <td>Suitable for only Adults</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
