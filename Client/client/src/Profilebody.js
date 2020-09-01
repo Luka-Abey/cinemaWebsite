@@ -3,25 +3,20 @@ import "./App.css";
 import { render } from "react-dom";
 import Navbar from './Navbar.js'
 import Footer from './Footer.js'
+import axios from 'axios';
 
 class Comment extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      records: [
-        {
-          movieID: 1,
-          name: "Harry Potter",
-          image: "media/harrypotter.jpg",
-          description:
-            "When his brother is killed in a robbery, paraplegic Marine Jake Sully decides to take his place in a mission on the distant world of Pandora. There he learns of greedy corporate figurehead Parker Selfridge's intentions of driving off the native humanoid Navi in order to mine for the precious material scattered throughout their rich woodland. In exchange for the spinal surgery that will fix his legs, Jake gathers knowledge, of the Indigenous Race and their Culture, for the cooperating military unit spearheaded by gung-ho Colonel Quaritch, while simultaneously attempting to infiltrate the Navi people with the use of an avatar identity. While Jake begins to bond with the native tribe and quickly falls in love with the beautiful alien Neytiri, the restless Colonel moves forward with his ruthless extermination tactics, forcing the soldier to take a stand - and fight back in an epic battle for the fate of Pandora.",
-          releaseDate: "10-01-2009",
-          actors: "Daniaal Radcliff, Ginger guy, Fit one",
-          Producer: "Some guy",
-        },
-      ],
-    };
-  }
+  state = {
+    movies: []
+    }
+
+  componentDidMount() {
+		axios.get(`http://localhost:5000/api/movies`)
+		  .then(res => {
+			const movies = res.data;
+			this.setState({ movies });
+		  })
+	  }
 
   render() {
     return (

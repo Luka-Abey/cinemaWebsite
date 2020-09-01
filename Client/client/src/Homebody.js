@@ -1,82 +1,28 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React,{Component} from 'react';
+import axios from 'axios';
 import './App.css';
+import {Link} from 'react-router-dom';
 import Navbar from './Navbar.js'
 import Footer from './Footer.js'
 
 
 export default class Homebody extends Component{
-	constructor(){
-		super()
-		// this.Addrecord=this.Addrecord.bind(this)
-		// this.delete=this.delete.bind(this)
+		
+		state = {
+			movies: []
+		  }
 
-		this.state={
-			records:[
-				{
-					"movieID":1,
-					"name":"Harry Potter",
-					"image": "media/harrypotter.jpg"
-				},
-				{
-					"movieID":2,
-					"name":"The Avengers",
-					"image":"media/avengers.jpg"
-				},
-				{
-                    "movieID":3,
-					"name":"Batman",
-					"image":"media/batman.png"
-				},
-				{
-					"movieID":4,
-					"name":"Avatar",
-					"image":"media/avatar.jpg"
-                },
-                {
-					"movieID":4,
-					"name":"Avatar",
-					"image":"media/avatar.jpg"
-                },
-                {
-					"movieID":4,
-					"name":"Avatar",
-					"image":"media/avatar.jpg"
-                },
-                {
-					"movieID":2,
-					"name":"The Avengers",
-					"image":"media/avengers.jpg"
-                },
-                {
-					"movieID":1,
-					"name":"Harry Potter",
-					"image": "media/harrypotter.jpg"
-				}     
-			]
-			}
-    }
+	componentDidMount() {
+		axios.get(`http://localhost:5000/api/movies`)
+		  .then(res => {
+			const movies = res.data;
+			console.log(movies)
+			console.log("TEST")
+			this.setState({ movies });
+		  })
+	  }
 
-	// delete(r){
-	// 	this.setState({
-	// 		records: this.state.records.filter(function(data){
-	// 			if (data.regno==r){
-	// 				return false
-	// 			}else{
-	// 				return true
-	// 			}
-	// 		})
-	// 	})
-	// }
-	// Addrecord(){
-	// 	this.setState({
-	// 		records:this.state.records.concat({
-	// 				"regno":121,
-	// 				"name":"Pater2",
-	// 				"marks":902
-	// 			})	
-	// 	})
-	// }
 	render(){
 		return (
 			<div>
@@ -85,16 +31,19 @@ export default class Homebody extends Component{
                 <center><img src="/media/wallpaper.jpg" style={{hight: "600px", width: "1360px"}} alt="Wallpaper"/></center>
                 <div class="row row-cols-4">
                 {
-                this.state.records.map(data	=>
+                this.state.movies.map(movie	=>
                     <div class="card" style={{width: "340px", hight: "40rem", backgroundColor: "black"}} >
-                        <img src={data.image} class="card-img-top" alt={data.name}/>
+						<Link to="/profile"> 
+                        <img src={movie.image} class="card-img-top" alt={movie.title}/>
+						</Link>
                         <div class="card-body">
-                            <p class="card-text">{data.name}</p>
+                            <p class="card-text">{movie.title}</p>
                         </div>
                     </div>
-                )
+				)
                 }
                 </div>
+				
 			</div>
 			<Footer></Footer>
 			</div>
