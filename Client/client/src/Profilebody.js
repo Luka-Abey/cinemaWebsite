@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 import { render } from "react-dom";
+import Navbar from './Navbar.js'
+import Footer from './Footer.js'
 
 class Comment extends React.Component {
   constructor() {
@@ -24,6 +26,7 @@ class Comment extends React.Component {
   render() {
     return (
       <div>
+        <Navbar></Navbar>
         <div
           class="container-fluid"
           style={{
@@ -149,6 +152,7 @@ class Comment extends React.Component {
             </div>
           </div>
         </div>
+        <Footer></Footer>
       </div>
     );
   }

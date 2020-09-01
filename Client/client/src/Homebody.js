@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React,{Component} from 'react';
 import './App.css';
+import Navbar from './Navbar.js'
+import Footer from './Footer.js'
 
 
 export default class Homebody extends Component{
@@ -77,7 +79,8 @@ export default class Homebody extends Component{
 	// }
 	render(){
 		return (
-            
+			<div>
+            <Navbar></Navbar>
 			<div style={{backgroundColor: "black", color: "white"}}>
                 <center><img src="/media/wallpaper.jpg" style={{hight: "600px", width: "1360px"}} alt="Wallpaper"/></center>
                 <div class="row row-cols-4">
@@ -93,6 +96,10 @@ export default class Homebody extends Component{
                 }
                 </div>
 			</div>
+			<Footer></Footer>
+			</div>
+			
 		)
+
 	}
 }
