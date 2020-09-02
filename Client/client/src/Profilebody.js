@@ -20,7 +20,6 @@ class Comment extends React.Component {
 			const movies = res.data;
 			this.setState({ movies });
       })
-    axios.get(`http://localhost:5000/api/comments/${ID}`)
     }
 
   render() {

@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 router.route("/:id").get(function(req, res) {
-    Comment.find({ movieId: req.params.ID }, function(err, comments) {
+    Comment.find({ "movieId": req.params.id }, function(err, comments) {
       if (err) {
         console.log(err);
       } else {
