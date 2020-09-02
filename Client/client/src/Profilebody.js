@@ -1,87 +1,118 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import React,{Component} from 'react';
-import axios from 'axios';
-import './App.css';
-import {Link} from 'react-router-dom';
-import Navbar from './Navbar.js'
-import Footer from './Footer.js'
+import "bootstrap/dist/css/bootstrap.css";
+import React, { Component } from "react";
+import axios from "axios";
+import "./App.css";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar.js";
+import Footer from "./Footer.js";
+import Form from "react-bootstrap/Form";
 
 class Comment extends React.Component {
-  constructor(){
-    super()
-  this.state = {
-    movies: [],
-    comments: []
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies: [],
+      comments: [],
+      name: "",
+      body: "",
+      email: "",
+    };
   }
 
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
   componentDidMount() {
-    window.scrollTo(0, 0)
-    const ID = this.props.match.params.id
-    console.log(this.props)
-		axios.get(`http://localhost:5000/api/movies/${ID}`)
-		  .then(res => {
-			const movies = res.data;
-			this.setState({ movies });
-      })
+    window.scrollTo(0, 0);
+    const ID = this.props.match.params.id;
+    axios.get(`http://localhost:5000/api/movies/${ID}`).then((res) => {
+      const movies = res.data;
+      this.setState({ movies });
+    });
 
-    	axios.get(`http://localhost:5000/api/comments/${ID}`)
-		  .then(res => {
-			const comments = res.data;
-			this.setState({ comments });
+    axios.get(`http://localhost:5000/api/comments/${ID}`).then((res) => {
+      const comments = res.data;
+      this.setState({ comments });
+    });
+  }
+
+  componentDidUpdate() {
+    const ID = this.props.match.params.id;
+    axios.get(`http://localhost:5000/api/comments/${ID}`).then((res) => {
+      const comments = res.data;
+      this.setState({ comments });
+    });
+  }
+
+  postComment = (event) => {
+    event.preventDefault();
+    const ID = this.props.match.params.id;
+    axios
+      .post(`http://localhost:5000/api/comments`, {
+        commentBody: this.state.body,
+        name: this.state.name,
+        email: this.state.email,
+        movieId: ID,
       })
-    }
-    
-    PostComment(state) {
-      const comment = document.getElementById('comment').value
-      const name = document.getElementById('name').value
-      const email = document.getElementById('email').value
-      console.log(comment)
-      console.log(name)
-      console.log(email)
-      console.log(this.state.movies)
-    }
+      .then((res) => {
+        this.setState({
+          name: "",
+          body: "",
+          email: "",
+        });
+      });
+  };
 
   render() {
     return (
       <div>
         <Navbar></Navbar>
-        <div class="container-fluid" style={{backgroundColor: "black", color: "white", paddingTop: "80px", paddingBottom: "80px",}}>
-            <div class="row" style={{ paddingLeft: "30px" }}>
-              <div class="col-4">
-                <img src={`../${this.state.movies.image}`} style={{ height: "700px", width: "400px" }}
-                  alt={this.state.movies.title}
-                />
-              </div>
-              <div class="col-5">
-                {this.state.movies.description}
-                <br />
-              </div>
-              <div class="col-3">
-                <h2>{this.state.movies.title}</h2>
-                <br />
-                Age Rating: <br />
-                {this.state.movies.ageRating}
-                <br />
-                <br />
-                Actors: <br />
-                {this.state.movies.cast}
-                <br />
-                <br />
-                Director: <br />
-                {this.state.movies.director}
-                <br />
-                <br />
-                Genre: <br />
-                {this.state.movies.genre}
-                <br />
-                <br />
-                Duration: <br />
-                {this.state.movies.runningTime} minites
-                <br />
-                <br />
-              </div>
+        <div
+          class="container-fluid"
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            paddingTop: "80px",
+            paddingBottom: "80px",
+          }}
+        >
+          <div class="row" style={{ paddingLeft: "30px" }}>
+            <div class="col-4">
+              <img
+                src={`../${this.state.movies.image}`}
+                style={{ height: "700px", width: "400px" }}
+                alt={this.state.movies.title}
+              />
             </div>
+            <div class="col-5">
+              {this.state.movies.description}
+              <br />
+            </div>
+            <div class="col-3">
+              <h2>{this.state.movies.title}</h2>
+              <br />
+              Age Rating: <br />
+              {this.state.movies.ageRating}
+              <br />
+              <br />
+              Actors: <br />
+              {this.state.movies.cast}
+              <br />
+              <br />
+              Director: <br />
+              {this.state.movies.director}
+              <br />
+              <br />
+              Genre: <br />
+              {this.state.movies.genre}
+              <br />
+              <br />
+              Duration: <br />
+              {this.state.movies.runningTime} minites
+              <br />
+              <br />
+            </div>
+          </div>
         </div>
         <div style={{ backgroundColor: "black", color: "white" }}>
           <center>
@@ -90,47 +121,46 @@ class Comment extends React.Component {
           <div class="container">
             <div class="row">
               <div class="col-sm-4">
-                    <legend>Leave a comment</legend>
-                    <textarea
-                      type="text"
-                      id = "comment"
-                      placeholder="Add to the conversation"
-                      required
-                    ></textarea>
-                    <br />
-                    <input type="text" id="name" placeholder="Name (required)" required />
-                    <input
-                      type="text"
-                      id ="email"
-                      placeholder="Email (required but never shown)"
-                      required
-                    />
-                    <br />
-                  <button
-                    type="submit"
-                    onClick={this.PostComment}
-                    class="btn btn-secondary btn-lg"
-                  >
+                <Form onSubmit={this.postComment}>
+                  <legend>Leave a comment</legend>
+                  <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" placeholder="name@example.com" name="email" onChange={this.handleChange} value={this.state.email} required />
+                  </Form.Group>
+                  <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control type="text" placeholder="Jhon Smith" name="name" onChange={this.handleChange} placeholder="Name" value={this.state.name} required/>
+                  </Form.Group>
+
+                  <Form.Group controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Comment</Form.Label>
+                    <Form.Control as="textarea" rows="3" name="body" value={this.state.body} onChange={this.handleChange}/>
+                  </Form.Group>
+                  <button type="submit" class="btn btn-secondary btn-lg">
                     Post Comment
                   </button>
+                </Form>
               </div>
               <div class="col-sm-8">
                 <div class="col-sm-14">
                   <div class="list-group">
-                  { this.state.comments.map(comment	=>
-                  <a class="list-group-item list-group-item-action active" style = {{marginBottom: "10px"}}>
-
-                  <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">{comment.name}</h5>
-                    <small>{comment.date}</small>
-                  </div>
-                  <p class="mb-1">
-                    {comment.commentBody}
-                  </p>
-                  <small>{comment.email}</small>
-                  </a>
-                  )
-                  }
+                    {this.state.comments.reverse().map((comment) => (
+                      <a
+                        class="list-group-item list-group-item-action active"
+                        style={{ marginBottom: "10px" }}
+                      >
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">{comment.name}</h5>
+                          <small>{`${new Date(
+                            comment.date
+                          ).toLocaleTimeString()} ${new Date(
+                            comment.date
+                          ).toLocaleDateString()}`}</small>
+                        </div>
+                        <p class="mb-1">{comment.commentBody}</p>
+                        <small>{comment.email}</small>
+                      </a>
+                    ))}
                   </div>
                 </div>
               </div>
