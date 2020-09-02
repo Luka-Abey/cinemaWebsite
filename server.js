@@ -5,6 +5,12 @@ const movies = require('./api/movies');
 const comments = require('./api/comments');
 // const bookings = require('./api/bookings')
 const app = express();
+    
+const cors = require('cors');
+app.use(cors({ origin:true}));
+
+
+
 
 // needed for bodyparser
 app.use(express.json());

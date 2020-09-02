@@ -18,8 +18,6 @@ export default class Homebody extends Component{
 		axios.get(`http://localhost:5000/api/movies`)
 		  .then(res => {
 			const movies = res.data;
-			console.log(movies)
-			console.log("TEST")
 			this.setState({ movies });
 		  })
 	  }
@@ -32,7 +30,8 @@ export default class Homebody extends Component{
                 <center><img src="/media/wallpaper.jpg" style={{height: "600px", width: "1360px"}} alt="Wallpaper"/></center>
                 <div class="row row-cols-4">
                 {
-                this.state.movies.map(movie	=>
+				this.state.movies.map(movie	=>
+					
                     <div class="card" style={{width: "340px", height: "40rem", backgroundColor: "black"}} >
 						<Link to = {`/profile/${movie._id}`}>
                         <img src={movie.image} class="card-img-top" alt={movie.title}/>

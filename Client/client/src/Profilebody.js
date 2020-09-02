@@ -7,9 +7,13 @@ import Navbar from './Navbar.js'
 import Footer from './Footer.js'
 
 class Comment extends React.Component {
-  state = {
-    movies: []
+  constructor(){
+    super()
+  this.state = {
+    movies: [],
+    comments: []
     }
+  }
 
   componentDidMount() {
     window.scrollTo(0, 0)
@@ -19,8 +23,24 @@ class Comment extends React.Component {
 		  .then(res => {
 			const movies = res.data;
 			this.setState({ movies });
-		  })
-	  }
+      })
+
+    	axios.get(`http://localhost:5000/api/comments/${ID}`)
+		  .then(res => {
+			const comments = res.data;
+			this.setState({ comments });
+      })
+    }
+    
+    PostComment(state) {
+      const comment = document.getElementById('comment').value
+      const name = document.getElementById('name').value
+      const email = document.getElementById('email').value
+      console.log(comment)
+      console.log(name)
+      console.log(email)
+      console.log(this.state.movies)
+    }
 
   render() {
     return (
@@ -70,77 +90,47 @@ class Comment extends React.Component {
           <div class="container">
             <div class="row">
               <div class="col-sm-4">
-                <form action="#" method="post">
-                  <fieldset>
                     <legend>Leave a comment</legend>
                     <textarea
                       type="text"
+                      id = "comment"
                       placeholder="Add to the conversation"
                       required
                     ></textarea>
                     <br />
-                    <input type="text" placeholder="Name (required)" required />
+                    <input type="text" id="name" placeholder="Name (required)" required />
                     <input
                       type="text"
+                      id ="email"
                       placeholder="Email (required but never shown)"
                       required
                     />
                     <br />
-                  </fieldset>
                   <button
                     type="submit"
-                    value="submit"
+                    onClick={this.PostComment}
                     class="btn btn-secondary btn-lg"
-                    id="btSubmit"
-                    active
                   >
                     Post Comment
                   </button>
-                </form>
               </div>
               <div class="col-sm-8">
                 <div class="col-sm-14">
                   <div class="list-group">
-                    <a
-                      href="#"
-                      class="list-group-item list-group-item-action active"
-                    >
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small>3 days ago</small>
-                      </div>
-                      <p class="mb-1">
-                        Donec id elit non mi porta gravida at eget metus.
-                        Maecenas sed diam eget risus varius blandit.
-                      </p>
-                      <small>Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small class="text-muted">3 days ago</small>
-                      </div>
-                      <p class="mb-1">
-                        Donec id elit non mi porta gravida at eget metus.
-                        Maecenas sed diam eget risus varius blandit.
-                      </p>
-                      <small class="text-muted">
-                        Donec id elit non mi porta.
-                      </small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small class="text-muted">3 days ago</small>
-                      </div>
-                      <p class="mb-1">
-                        Donec id elit non mi porta gravida at eget metus.
-                        Maecenas sed diam eget risus varius blandit.
-                      </p>
-                      <small class="text-muted">
-                        Donec id elit non mi porta.
-                      </small>
-                    </a>
+                  { this.state.comments.map(comment	=>
+                  <a class="list-group-item list-group-item-action active" style = {{marginBottom: "10px"}}>
+
+                  <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{comment.name}</h5>
+                    <small>{comment.date}</small>
+                  </div>
+                  <p class="mb-1">
+                    {comment.commentBody}
+                  </p>
+                  <small>{comment.email}</small>
+                  </a>
+                  )
+                  }
                   </div>
                 </div>
               </div>
