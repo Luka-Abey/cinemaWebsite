@@ -11,6 +11,17 @@ router.get('/', (req, res) => {
         .then(comments => res.json(comments));
 });
 
+router.route("/:id").get(function(req, res) {
+    Comment.find({ movieId: req.params.ID }, function(err, comments) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(comments);
+      }
+    });
+  });
+
+
 // POST request to api/items, public access
 router.post('/', ({body}, res) => {
     const newComment = new Comment(body);

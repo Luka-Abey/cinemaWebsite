@@ -5,7 +5,7 @@ const CommentSchema = new Schema({
     commentBody: String,
     name: String,
     email : String,
-    movieId : Number,
+    movieId : String,
     date : {type: Date,
         default: Date.now}
 });
