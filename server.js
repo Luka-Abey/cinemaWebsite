@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 
@@ -5,6 +6,7 @@ const movies = require('./api/movies');
 const comments = require('./api/comments');
 // const bookings = require('./api/bookings')
 const app = express();
+app.use(cors({ origin: true }));
 
 // needed for bodyparser
 app.use(express.json());
