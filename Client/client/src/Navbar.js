@@ -20,7 +20,7 @@ export default class Navbar extends Component{
                             <a class="nav-link" href="#" style={{color: "white", fontSize: "20px" , paddingRight: "30px"}}>Info<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" style={{color: "white", fontSize: "20px" , paddingRight: "30px"}}>Contact Us</a>
+                            <a class="nav-link" href="#" style={{color: "white", fontSize: "20px" , paddingRight: "30px"}}><Link to = {`/contact`}>Contact Us</Link></a>
                         </li>
                     </ul>
                     <Search/>

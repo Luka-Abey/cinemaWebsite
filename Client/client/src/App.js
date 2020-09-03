@@ -3,6 +3,7 @@ import './App.css';
 import Homebody from './Homebody.js';
 import Profilebody from './Profilebody.js';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
+import Contact from './Contact.js';
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <switch>
         <Route exact path="/" component={Homebody}></Route>
         <Route exact path="/profile/:id" component={Profilebody}></Route>
+        <Route exact path="/contact" component={Contact}></Route>
         </switch>
     </Router>
     // <div className="App">
