@@ -17,7 +17,7 @@ export default class Navbar extends Component{
                 <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{color: "white"}}>
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                            <a className="nav-link" href="#" style={{color: "white", fontSize: "20px" , paddingRight: "30px"}}>Info<span className="sr-only">(current)</span></a>
+                            <a className="nav-link" href="#" style={{color: "white", fontSize: "20px" , paddingRight: "30px"}}><Link to="/about">Info</Link><span className="sr-only">(current)</span></a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#" style={{color: "white", fontSize: "20px" , paddingRight: "30px"}}><Link to="/contact">Contact Us</Link></a>
