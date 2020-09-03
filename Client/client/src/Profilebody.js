@@ -70,7 +70,6 @@ class Comment extends React.Component {
   };
 
   deleteComment = (commentId) => {
-    console.log(commentId)
     axios.delete(`http://localhost:5000/api/comments/${commentId}`)
   }
 
@@ -78,16 +77,15 @@ class Comment extends React.Component {
     this.setState({
       isInEditMode: !this.state.isInEditMode
     })
-    console.log("Changed mode")
-    console.log(this.state.isInEditMode)
   }
 
-  updateComment = () => {
+  updateComment = (commentId) => {
     this.setState({
-      isInEditMode: !this.state.isInEditMode,
-      newComment: this.refs.newComment.value
+      isInEditMode: false,
     })
-    console.log(this.state.newComment)
+    axios.put(`http://localhost:5000/api/comments/${commentId}`,{
+      commentBody: document.getElementById(commentId).value
+    })
   }
 
   renderDefultView = () => {
@@ -296,9 +294,9 @@ class Comment extends React.Component {
                           comment.date
                         ).toLocaleDateString()}`}</small>
                       </div>
-                      <input type= "text" onDoubleClick={this.changeEditMode} refs="newComment" defaultValue={comment.commentBody}></input> 
-                      <button onClick={this.changeEditMode}>Cancel</button>
-                      <button onClick={this.updateComment}>Save</button>
+                      <input type= "text" onDoubleClick={this.changeEditMode} id={comment._id} defaultValue={comment.commentBody}></input> 
+                      <button onClick={() => this.changeEditMode()}>Cancel</button>
+                      <button onClick={() => this.updateComment(comment._id)}>Save</button>
                       <br></br>
                       <small>{comment.email}</small>
                     </a>
