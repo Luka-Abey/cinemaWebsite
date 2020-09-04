@@ -92,8 +92,9 @@ class Comment extends React.Component {
     return(
         <div>
         <Navbar></Navbar>
+        <div style={{ backgroundColor: "black", color: "white" }}>
         <div
-          class="container-fluid"
+          class="container"
           style={{
             backgroundColor: "black",
             color: "white",
@@ -102,18 +103,18 @@ class Comment extends React.Component {
           }}
         >
           <div class="row" style={{ paddingLeft: "30px" }}>
-            <div class="col-4">
+            <div class="col">
               <img
                 src={`../${this.state.movies.image}`}
-                style={{ height: "700px", width: "400px" }}
+                style={{ height: "500px", width: "100%" }}
                 alt={this.state.movies.title}
               />
             </div>
-            <div class="col-5">
+            <div class="col">
               {this.state.movies.description}
               <br />
             </div>
-            <div class="col-3">
+            <div class="col">
               <h2>{this.state.movies.title}</h2>
               <br />
               Age Rating: <br />
@@ -138,6 +139,7 @@ class Comment extends React.Component {
               <br />
             </div>
           </div>
+        </div>
         </div>
         <div style={{ backgroundColor: "black", color: "white" }}>
           <center>

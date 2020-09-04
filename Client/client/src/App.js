@@ -5,6 +5,7 @@ import Profilebody from './Profilebody.js';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 import Contact from './Contact.js';
 import About from './About.js';
+import GoogleMap from './Map.js'
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/profile/:id" component={Profilebody}></Route>
         <Route exact path="/contact" component={Contact}></Route>
         <Route exact path="/about" component={About}></Route>
+        <Route exact path="/map" component={GoogleMap}></Route>
         </switch>
     </Router>
     // <div className="App">

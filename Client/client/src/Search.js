@@ -40,18 +40,17 @@ export default function Searchbar() {
         // options={data.map(movie=>movie._id)}
         options={data}
         getOptionLabel={(option) => option.title}
-        style={{ width: 300 }}
+        style={{ width: 300,  backgroundColor: "white"}}
         onInputChange={handleInputChange}
         renderInput={(params) => (
           <TextField
             {...params}
             label="Search movies"
             variant="standard"
-            margin="normal"
           />
         )}
       />
-      <Button variant="contained" color="primary" href={`/profile/${movieid}`}>
+      <Button variant="contained" color="primary" href={`/profile/${movieid}`} style={{backgroundColor:"white", color:"black", marginTop:"10px"}}>
         Search
       </Button>
     </div>
