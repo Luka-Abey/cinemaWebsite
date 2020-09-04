@@ -1,15 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Homebody from './Homebody.js';
+import Profilebody from './Profilebody.js';
+import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
+import Contact from './Contact.js';
+import CheckoutForm from './CheckoutForm';
+
 
 function App() {
   return (
-    <div className="App">
-      <Navbar/>
-      <Homebody/>
-      <Profilebody/>
-      <Footer/>
-    </div>
+    
+    <Router>
+        <switch>
+        <Route exact path="/" component={Homebody}></Route>
+        <Route exact path="/profile/:id" component={Profilebody}></Route>
+        <Route exact path="/contact" component={Contact}></Route>
+        </switch>
+    </Router>
+  
+    // <div className="App">
+    //   <Navbar/>
+    //   <Homebody/>
+    //   <Profilebody/>
+    //   <Footer/>
+
+    // </div>
   );
 }
 
