@@ -42,9 +42,38 @@ export default class About extends Component{
                             </center><br></br><br></br>
                         </div>
                         </div>
+                        <div class="row" style={{color: "white"}}>
+                            <div class="col">
+                                <center>
+                                <h2>Our Screens</h2>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="row" style={{color: "white"}}>
+                            <div class="col">
+                                <center>
+                                <h3>Screen 1</h3>
+                                Large screen made to accomidate large groups to view new block busters 
+                                soon after release. Acommidates 46 people and 4 wheelchair users. Screen size is 60ft by 40 ft
+                                <br/>
+                                <img src="../media/bigscreen.jpg" alt="screen1" style={{width:"80%"}}/><br/><br/>
+                                <img src="../media/bigscreenseating.jpg" alt="screen1 seating" style={{width:"80%"}}/><br/>
+                                </center>
+                            </div>
+                            <div class="col">
+                                <center>
+                                <h3>Screen 2</h3>
+                                Smaller screen perfect for small groups who want a more quite and private experaince 
+                                with no interuptions. Can accomidate 13 people and 4 wheelchair users. Screen size is 30ft by 20ft
+                                <img src="../media/smallscreen.jpg" alt="screen2" style={{width:"80%"}}/><br/><br/>
+                                <img src="../media/smallscreenseating.jpg" alt="screen2 seating" style={{width:"80%"}}/>
+                                </center>
+                            </div>
+                        </div><br/><br/><br/>
                         <div class="row">
                             <div class="col">
-                                <center><h2> About the Attractions</h2></center>
+                                <center><h2>Entertainment nearby</h2></center>
+                                <br/>
                                 <Carousel>
                                     <Carousel.Item>
                                         <img src="../media/attraction1.jpg"
