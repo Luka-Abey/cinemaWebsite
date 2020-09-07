@@ -3,14 +3,13 @@ const mongoose = require('mongoose');
 
 const movies = require('./api/movies');
 const comments = require('./api/comments');
-// const bookings = require('./api/bookings')
+const bookings = require('./api/bookings')
+const screenings = require('./api/screenings')
+
 const app = express();
     
 const cors = require('cors');
 app.use(cors({ origin:true}));
-
-
-
 
 // needed for bodyparser
 app.use(express.json());
@@ -25,7 +24,8 @@ mongoose
 // to use routes
 app.use('/api/movies', movies);
 app.use('/api/comments', comments);
-// app.use('/api/bookings', bookings);
+app.use('/api/bookings', bookings);
+app.use('/api/screenings', screenings);
 
 const port = process.env.PORT || 5000;
 

@@ -153,7 +153,7 @@ class Comment extends React.Component {
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="name@example.com" name="email" onChange={this.handleChange} value={this.state.email} required />
                   </Form.Group>
-                  <Form.Group controlId="exampleForm.ControlInput1">
+                  <Form.Group controlId="exampleForm.ControlInput2">
                     <Form.Label>Name</Form.Label>
                     <Form.Control type="text" placeholder="Jhon Smith" name="name" onChange={this.handleChange} placeholder="Name" value={this.state.name} required/>
                   </Form.Group>

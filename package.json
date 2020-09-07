@@ -4,7 +4,7 @@
   "description": "QA cinema web app built by Ganymede",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node server.js",
     "client-install": "npm install --prefix client",
     "server": "nodemon server.js",
@@ -21,7 +21,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.10.2",
-    "react-bootstrap": "^1.3.0"
+    "react-bootstrap": "^1.3.0",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
