@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Homebody from './Homebody.js';
-import Profilebody from './Profilebody.js';
+import Homebody from './components/home/Homebody.js';
+import Profilebody from './components/profile/Profilebody.js';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
-import Contact from './Contact.js';
-import About from './About.js';
-import GoogleMap from './Map.js'
+import Contact from './components/contact/Contact.js';
+import About from './components/about/About.js';
+import GoogleMap from './components/map/Map.js'
 
 
 function App() {
@@ -19,13 +19,6 @@ function App() {
         <Route exact path="/map" component={GoogleMap}></Route>
         </switch>
     </Router>
-    // <div className="App">
-    //   <Navbar/>
-    //   <Homebody/>
-    //   <Profilebody/>
-    //   <Footer/>
-
-    // </div>
   );
 }
 
