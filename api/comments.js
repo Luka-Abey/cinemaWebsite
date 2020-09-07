@@ -25,6 +25,7 @@ router.post('/', ({body}, res) => {
         )
         .catch(err => res.status(404).json({success: false}));
 });
+
 // DELETE request to api/items, public access
 router.delete('/:id', (req, res) => {
     Comment.findById(req.params.id)
