@@ -1,32 +1,43 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import React,{Component} from 'react';
-import './App.css';
-import { Link } from 'react-router-dom';
-import Search from './Search';
+import React, { Component } from "react";
+import "./App.css";
+import { Link } from "react-router-dom";
+
+
+
+export default class Navbar extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          navbar: false
+        };
+        this.toggleMenu = this.toggleMenu.bind(this);
+      }
     
-export default class Navbar extends Component{
-
-    render(){
-        return (
-            <nav class="navbar navbar-expand-lg navbar" style={{backgroundColor: "black"}} >
-                <a class="navbar-brand" href="#" style={{color: "white", fontSize: "30px", paddingRight: "100px"}}><Link to="/"><img src="../media/logo.png" style={{width: "230px", height: "100px"}}/></Link></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent" style={{color: "white"}}>
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#" style={{color: "white", fontSize: "20px" , paddingRight: "30px"}}><Link to = {`/about`}>About us</Link></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style={{color: "white", fontSize: "20px" , paddingRight: "30px"}}><Link to = {`/contact`}>Contact Us</Link></a>
-                        </li>
-                    </ul>
-                    <Search/>
-                </div>
-            </nav>
-        )
-    }   
-}
-
+      toggleMenu(){
+        this.setState({ navbar: !this.state.navbar })
+      }
+    
+      render() {
+    
+      const show = (this.state.navbar) ? "show" : "" ;
+    
+      return (
+    
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="/">Navbar</a>
+          <button className="navbar-toggler" type="button" onClick={ this.toggleMenu }>
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className={"collapse navbar-collapse " + show}>
+            <div className="navbar-nav mr-auto">
+              <a className="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+              <a className="nav-item nav-link" href="/">Features</a>
+              <a className="nav-item nav-link" href="/">Pricing</a>
+              <a className="nav-item nav-link" href="/">logout</a>
+            </div>
+          </div>
+        </nav>
+      );
+      }
+    }
