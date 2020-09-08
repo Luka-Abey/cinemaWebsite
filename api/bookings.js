@@ -8,8 +8,8 @@ router.get('/', (req, res) => {
         .then(bookings => res.json(bookings));
 });
 
-router.route("/:id", (req, res) => {
-    Booking.find({ "bookingId": req.params.id }, function(err, bookings) {
+router.get("/:id", (req, res) => {
+    Booking.find({ "_id": req.params.id }, function(err, bookings) {
       if (err) {
         console.log(err);
       } else {

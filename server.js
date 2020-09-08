@@ -1,6 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
-
+const db = require('./db')
 const movies = require('./api/movies');
 const comments = require('./api/comments');
 const bookings = require('./api/bookings')
@@ -14,14 +13,8 @@ app.use(cors({ origin:true}));
 // needed for bodyparser
 app.use(express.json());
 
-const db = require('./config/keys').mongoURI;
-
-mongoose
-    .connect(db, { useNewUrlParser: true })
-    .then(() => console.log('MongoDB Connected...'))
-    .catch(err =>console.log(err))
-
 // to use routes
+app.get('/api', (req, res) => res.send('hello world'));
 app.use('/api/movies', movies);
 app.use('/api/comments', comments);
 app.use('/api/bookings', bookings);
@@ -29,4 +22,6 @@ app.use('/api/screenings', screenings);
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server started on port ${port}`))
+const server = app.listen(port, () => console.log(`Server started on port ${port}`));
+
+module.exports = server;
