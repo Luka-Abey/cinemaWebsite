@@ -1,4 +1,4 @@
-//import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import React,{Component} from 'react';
 import { Link } from 'react-router-dom';
 import Search from './../search/Search';

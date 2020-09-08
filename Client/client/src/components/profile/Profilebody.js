@@ -136,6 +136,7 @@ class Comment extends React.Component {
               {this.state.movies.runningTime} minites
               <br />
               <br />
+              <Button variant="primary"><Link to = {`/booking/${this.state.movies.title}`}>Book</Link></Button>
             </div>
           </div>
         </div>
