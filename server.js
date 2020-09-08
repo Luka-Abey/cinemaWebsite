@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const movies = require("./api/movies");
 const comments = require("./api/comments");
 // const bookings = require('./api/bookings')
-// const charge = require("./api/charge");
+const charge = require("./api/charge");
 const app = express();
 
 const cors = require("cors");
@@ -23,7 +23,7 @@ mongoose
 // to use routes
 app.use("/api/movies", movies);
 app.use("/api/comments", comments);
-// app.use("/api/charge", charge);
+app.use("/api/charge", charge);
 // app.use('/api/bookings', bookings);
 
 

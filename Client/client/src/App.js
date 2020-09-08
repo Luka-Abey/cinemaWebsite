@@ -4,8 +4,8 @@ import Homebody from './Homebody.js';
 import Profilebody from './Profilebody.js';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 import Contact from './Contact.js';
-import CheckoutForm from './CheckoutForm';
-import StripeExpress from './StripeExpress'
+// import CheckoutForm from './CheckoutForm';
+// import StripeExpress from './StripeExpress'
 
 function App() {
   return (

@@ -10,7 +10,10 @@ import Button from "react-bootstrap/Button";
 import CheckoutForm from "./CheckoutForm";
 import stripeform from "./Stripeform";
 import Stripeform from "./Stripeform";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
+const promise = loadStripe("pk_test_51HNaldF8DGptuqu5JisJ7OAYj3wPAJWUMINx5xgLcSWS081P1pmdN3YyPIAsKTvbgmSDWyXH9VBdQZK52iBIWH8O00xlQivOn0")
 class Comment extends React.Component {
   constructor(props) {
     super(props);
@@ -139,8 +142,10 @@ class Comment extends React.Component {
               <br />
               <br />
             </div>
-            <div>
-            <CheckoutForm/>
+            <div className="App">
+              <Elements stripe={promise}>
+                <CheckoutForm />
+              </Elements>
             </div>
           </div>
         </div>
@@ -394,4 +399,3 @@ class Comment extends React.Component {
 
 // ReactDOM.render(<App />, document.getElementById('CheckoutNow'));
 export default Comment;
-
