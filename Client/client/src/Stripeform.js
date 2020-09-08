@@ -24,7 +24,7 @@ const CheckoutForm = () => {
       const { id } = paymentMethod;
 
       try {
-        const {data} = await axios.post('/charge/', { id, amount: 3899 });
+        const {data} = await axios.post('/api/charge/', { id, amount: 3899 });
         console.log(data);
       } catch (error) {
         console.log(error);
@@ -43,7 +43,7 @@ const CheckoutForm = () => {
       style={{ maxWidth: "300px", margin: "0 auto" }}
     >
       <CardElement />
-      <button type="submit" disabled={!stripe}>
+      <button role="link" type="submit" disabled={!stripe}>
         Pay
       </button>
     </form>

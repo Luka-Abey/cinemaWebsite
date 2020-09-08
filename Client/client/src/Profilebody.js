@@ -22,7 +22,7 @@ class Comment extends React.Component {
       email: "",
       commentId: "",
       isInEditMode: false,
-      newComment: ""
+      newComment: "",
     };
   }
 
@@ -42,8 +42,6 @@ class Comment extends React.Component {
       this.setState({ comments });
     });
   }
-
-  
 
   componentDidUpdate() {
     const ID = this.props.match.params.id;
@@ -73,29 +71,172 @@ class Comment extends React.Component {
   };
 
   deleteComment = (commentId) => {
-    axios.delete(`http://localhost:5000/api/comments/${commentId}`)
-  }
+    axios.delete(`http://localhost:5000/api/comments/${commentId}`);
+  };
 
-  changeEditMode =  () => {
+  changeEditMode = () => {
     this.setState({
-      isInEditMode: !this.state.isInEditMode
-    })
-  }
+      isInEditMode: !this.state.isInEditMode,
+    });
+  };
 
   updateComment = (commentId) => {
     this.setState({
       isInEditMode: false,
-    })
-    axios.put(`http://localhost:5000/api/comments/${commentId}`,{
-      commentBody: document.getElementById(commentId).value
-    })
-  }
+    });
+    axios.put(`http://localhost:5000/api/comments/${commentId}`, {
+      commentBody: document.getElementById(commentId).value,
+    });
+  };
 
   renderDefultView = () => {
-    return(
-        <div>
+    return (
+      <div>
         <Navbar></Navbar>
-        <Stripeform></Stripeform>
+        {/* <Stripeform></Stripeform> */}
+        <div
+          class="container-fluid"
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            paddingTop: "80px",
+            paddingBottom: "80px",
+          }}
+        >
+          <div class="row" style={{ paddingLeft: "30px" }}>
+            <div class="col-4">
+              <img
+                src={`../${this.state.movies.image}`}
+                style={{ height: "700px", width: "400px" }}
+                alt={this.state.movies.title}
+              />
+            </div>
+            <div class="col-5">
+              {this.state.movies.description}
+              <br />
+            </div>
+            <div class="col-3">
+              <h2>{this.state.movies.title}</h2>
+              <br />
+              Age Rating: <br />
+              {this.state.movies.ageRating}
+              <br />
+              <br />
+              Actors: <br />
+              {this.state.movies.cast}
+              <br />
+              <br />
+              Director: <br />
+              {this.state.movies.director}
+              <br />
+              <br />
+              Genre: <br />
+              {this.state.movies.genre}
+              <br />
+              <br />
+              Duration: <br />
+              {this.state.movies.runningTime} minites
+              <br />
+              <br />
+            </div>
+            <div>
+            <CheckoutForm/>
+            </div>
+          </div>
+        </div>
+        <div style={{ backgroundColor: "black", color: "white" }}>
+          <center>
+            <h1>Ratings & Reviews</h1>
+          </center>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <Form onSubmit={this.postComment}>
+                  <legend>Leave a comment</legend>
+                  <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="name@example.com"
+                      name="email"
+                      onChange={this.handleChange}
+                      value={this.state.email}
+                      required
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="exampleForm.ControlInput1">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Jhon Smith"
+                      name="name"
+                      onChange={this.handleChange}
+                      placeholder="Name"
+                      value={this.state.name}
+                      required
+                    />
+                  </Form.Group>
+
+                  <Form.Group controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Comment</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      rows="3"
+                      name="body"
+                      value={this.state.body}
+                      onChange={this.handleChange}
+                    />
+                  </Form.Group>
+                  <button type="submit" class="btn btn-secondary btn-lg">
+                    Post Comment
+                  </button>
+                </Form>
+              </div>
+              <div class="col-sm-8">
+                <div class="col-sm-14">
+                  <div class="list-group">
+                    {this.state.comments.reverse().map((comment) => (
+                      <div>
+                        <a
+                          class="list-group-item list-group-item-action active"
+                          style={{ marginTop: "10px" }}
+                        >
+                          <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{comment.name}</h5>
+                            <small>{`${new Date(
+                              comment.date
+                            ).toLocaleTimeString()} ${new Date(
+                              comment.date
+                            ).toLocaleDateString()}`}</small>
+                          </div>
+                          <p class="mb-1" onDoubleClick={this.changeEditMode}>
+                            {comment.commentBody}
+                          </p>
+                          <small>{comment.email}</small>
+                        </a>
+                        <Button
+                          variant="danger"
+                          onClick={() => this.deleteComment(comment._id)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <Footer></Footer>
+      </div>
+    );
+  };
+
+  renderEditView = () => {
+    return (
+      <div>
+        <Navbar></Navbar>
         <div
           class="container-fluid"
           style={{
@@ -154,16 +295,37 @@ class Comment extends React.Component {
                   <legend>Leave a comment</legend>
                   <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="name@example.com" name="email" onChange={this.handleChange} value={this.state.email} required />
+                    <Form.Control
+                      type="email"
+                      placeholder="name@example.com"
+                      name="email"
+                      onChange={this.handleChange}
+                      value={this.state.email}
+                      required
+                    />
                   </Form.Group>
                   <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Jhon Smith" name="name" onChange={this.handleChange} placeholder="Name" value={this.state.name} required/>
+                    <Form.Control
+                      type="text"
+                      placeholder="Jhon Smith"
+                      name="name"
+                      onChange={this.handleChange}
+                      placeholder="Name"
+                      value={this.state.name}
+                      required
+                    />
                   </Form.Group>
 
                   <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Comment</Form.Label>
-                    <Form.Control as="textarea" rows="3" name="body" value={this.state.body} onChange={this.handleChange}/>
+                    <Form.Control
+                      as="textarea"
+                      rows="3"
+                      name="body"
+                      value={this.state.body}
+                      onChange={this.handleChange}
+                    />
                   </Form.Group>
                   <button type="submit" class="btn btn-secondary btn-lg">
                     Post Comment
@@ -175,22 +337,41 @@ class Comment extends React.Component {
                   <div class="list-group">
                     {this.state.comments.reverse().map((comment) => (
                       <div>
-                      <a
-                        class="list-group-item list-group-item-action active"
-                        style={{ marginTop: "10px" }}
-                      >
-                        <div class="d-flex w-100 justify-content-between">
-                          <h5 class="mb-1">{comment.name}</h5>
-                          <small>{`${new Date(
-                            comment.date
-                          ).toLocaleTimeString()} ${new Date(
-                            comment.date
-                          ).toLocaleDateString()}`}</small>
-                        </div>
-                        <p class="mb-1" onDoubleClick={this.changeEditMode}>{comment.commentBody}</p>
-                        <small>{comment.email}</small>
-                      </a>
-                        <Button variant="danger" onClick={() => this.deleteComment(comment._id)}>Delete</Button>
+                        <a
+                          class="list-group-item list-group-item-action active"
+                          style={{ marginTop: "10px" }}
+                        >
+                          <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{comment.name}</h5>
+                            <small>{`${new Date(
+                              comment.date
+                            ).toLocaleTimeString()} ${new Date(
+                              comment.date
+                            ).toLocaleDateString()}`}</small>
+                          </div>
+                          <input
+                            type="text"
+                            onDoubleClick={this.changeEditMode}
+                            id={comment._id}
+                            defaultValue={comment.commentBody}
+                          ></input>
+                          <button onClick={() => this.changeEditMode()}>
+                            Cancel
+                          </button>
+                          <button
+                            onClick={() => this.updateComment(comment._id)}
+                          >
+                            Save
+                          </button>
+                          <br></br>
+                          <small>{comment.email}</small>
+                        </a>
+                        <Button
+                          variant="danger"
+                          onClick={() => this.deleteComment(comment._id)}
+                        >
+                          Delete
+                        </Button>
                       </div>
                     ))}
                   </div>
@@ -201,131 +382,16 @@ class Comment extends React.Component {
         </div>
         <Footer></Footer>
       </div>
-    )};
-
-  renderEditView = () => {
-    return(
-      <div>
-      <Navbar></Navbar>
-      <div
-        class="container-fluid"
-        style={{
-          backgroundColor: "black",
-          color: "white",
-          paddingTop: "80px",
-          paddingBottom: "80px",
-        }}
-      >
-        <div class="row" style={{ paddingLeft: "30px" }}>
-          <div class="col-4">
-            <img
-              src={`../${this.state.movies.image}`}
-              style={{ height: "700px", width: "400px" }}
-              alt={this.state.movies.title}
-            />
-          </div>
-          <div class="col-5">
-            {this.state.movies.description}
-            <br />
-          </div>
-          <div class="col-3">
-            <h2>{this.state.movies.title}</h2>
-            <br />
-            Age Rating: <br />
-            {this.state.movies.ageRating}
-            <br />
-            <br />
-            Actors: <br />
-            {this.state.movies.cast}
-            <br />
-            <br />
-            Director: <br />
-            {this.state.movies.director}
-            <br />
-            <br />
-            Genre: <br />
-            {this.state.movies.genre}
-            <br />
-            <br />
-            Duration: <br />
-            {this.state.movies.runningTime} minites
-            <br />
-            <br />
-          </div>
-        </div>
-      </div>
-      <div style={{ backgroundColor: "black", color: "white" }}>
-        <center>
-          <h1>Ratings & Reviews</h1>
-        </center>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4">
-              <Form onSubmit={this.postComment}>
-                <legend>Leave a comment</legend>
-                <Form.Group controlId="exampleForm.ControlInput1">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="name@example.com" name="email" onChange={this.handleChange} value={this.state.email} required />
-                </Form.Group>
-                <Form.Group controlId="exampleForm.ControlInput1">
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control type="text" placeholder="Jhon Smith" name="name" onChange={this.handleChange} placeholder="Name" value={this.state.name} required/>
-                </Form.Group>
-
-                <Form.Group controlId="exampleForm.ControlTextarea1">
-                  <Form.Label>Comment</Form.Label>
-                  <Form.Control as="textarea" rows="3" name="body" value={this.state.body} onChange={this.handleChange}/>
-                </Form.Group>
-                <button type="submit" class="btn btn-secondary btn-lg">
-                  Post Comment
-                </button>
-              </Form>
-            </div>
-            <div class="col-sm-8">
-              <div class="col-sm-14">
-                <div class="list-group">
-                  {this.state.comments.reverse().map((comment) => (
-                    <div>
-                    <a
-                      class="list-group-item list-group-item-action active"
-                      style={{ marginTop: "10px" }}
-                    >
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{comment.name}</h5>
-                        <small>{`${new Date(
-                          comment.date
-                        ).toLocaleTimeString()} ${new Date(
-                          comment.date
-                        ).toLocaleDateString()}`}</small>
-                      </div>
-                      <input type= "text" onDoubleClick={this.changeEditMode} id={comment._id} defaultValue={comment.commentBody}></input> 
-                      <button onClick={() => this.changeEditMode()}>Cancel</button>
-                      <button onClick={() => this.updateComment(comment._id)}>Save</button>
-                      <br></br>
-                      <small>{comment.email}</small>
-                    </a>
-                      <Button variant="danger" onClick={() => this.deleteComment(comment._id)}>Delete</Button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer></Footer>
-    </div>
-  )};
+    );
+  };
 
   render() {
-    return ( 
-      this.state.isInEditMode ?
-      this.renderEditView():
-      this.renderDefultView()
-    );
-      
-}
+    return this.state.isInEditMode
+      ? this.renderEditView()
+      : this.renderDefultView();
+  }
 }
 
 // ReactDOM.render(<App />, document.getElementById('CheckoutNow'));
 export default Comment;
+
