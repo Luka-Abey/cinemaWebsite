@@ -73,7 +73,7 @@ export default class booking extends Component{
         axios.post(`http://localhost:5000/api/bookings`, data)
         .then((res) => {
             console.log(res)
-            window.alert("Booking succesful, please pay to complete booking")
+            window.alert("Booking succesful, please pay to complete booking. Total "+ sessionStorage.getItem("price"))
             this.setState({
                 email: "",
                 chosenSeats: {},
