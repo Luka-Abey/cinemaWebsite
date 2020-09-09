@@ -69,7 +69,7 @@ export default class Contact extends React.Component {
                         </Form>
                         </div>
                         <div class="col" style={{paddingLeft:"50px"}}>
-                            Alternitevily you can contact the support team: <br/>
+                            Alternatively you can contact the support team: <br/>
                             Email: Anaeem@QA.com<br/>
                             Phone: 0800 101 4242<br/><br/>
                             Available Mon-Fri   10am - 4pm

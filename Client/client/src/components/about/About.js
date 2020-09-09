@@ -29,9 +29,9 @@ export default class About extends Component{
                                 Cinema are committed to providing you with the ultimate
                                 film-going experience. There is only <b>ONE</b> QA Cinema Based
                                 in Manchester, UK and it never fails to show popular new
-                                releases such as Parasite, Tennet, Black Panther and Get out.
+                                releases such as Parasite, Tennet, Black Panther and Get Out,
                                 operating 4 Screens 24/7. Customer service is key for us so we
-                                allow customers to to directly message one of our founders with
+                                allow customers to directly message one of our founders with
                                 any feedback by completing the form found{" "}
                                 <Link to="/contact"><u>here</u></Link>. We are interested in your
                                 comments and read every e-mail. We consider all comments to
@@ -52,8 +52,8 @@ export default class About extends Component{
                             <div class="col">
                                 <center>
                                 <h3>Screen 1</h3>
-                                Large screen made to accomidate large groups to view new block busters 
-                                soon after release. Acommidates 46 people and 4 wheelchair users. Screen size is 60ft by 40 ft
+                                Large screen made to accommodate large groups to view new block busters 
+                                soon after release. Accommodates 46 people and 4 wheelchair users. Screen size is 60ft by 40 ft
                                 <br/>
                                 <img src="../media/bigscreen.jpg" alt="screen1" style={{width:"80%"}}/><br/><br/>
                                 <img src="../media/bigscreenseating.jpg" alt="screen1 seating" style={{width:"80%"}}/><br/>
@@ -62,8 +62,8 @@ export default class About extends Component{
                             <div class="col">
                                 <center>
                                 <h3>Screen 2</h3>
-                                Smaller screen perfect for small groups who want a more quite and private experaince 
-                                with no interuptions. Can accomidate 13 people and 4 wheelchair users. Screen size is 30ft by 20ft
+                                Smaller screen perfect for small groups who want a more quite and private experience 
+                                with no interruptions. Can accommodate 13 people and 4 wheelchair users. Screen size 30ft by 20ft
                                 <img src="../media/smallscreen.jpg" alt="screen2" style={{width:"80%"}}/><br/><br/>
                                 <img src="../media/smallscreenseating.jpg" alt="screen2 seating" style={{width:"80%"}}/>
                                 </center>

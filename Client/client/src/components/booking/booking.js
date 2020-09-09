@@ -136,6 +136,16 @@ export default class booking extends Component{
                         <option>4</option>
                         </Form.Control>
                     </Form.Group>
+                    <Form.Group controlId="exampleForm.ControlSelect1">
+                        <Form.Label>Concession Tickets:</Form.Label>
+                        <Form.Control as="select">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        </Form.Control>
+                    </Form.Group>
                     Select a screen time:
                     <ul>
                     {

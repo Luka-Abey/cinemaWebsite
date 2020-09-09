@@ -133,7 +133,7 @@ class Comment extends React.Component {
               <br />
               <br />
               Duration: <br />
-              {this.state.movies.runningTime} minites
+              {this.state.movies.runningTime} minutes
               <br />
               <br />
               <button class="btn btn-secondary btn-lg"><Link to = {`/booking/${this.state.movies.title}`}>Book</Link></button>
