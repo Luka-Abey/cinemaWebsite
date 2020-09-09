@@ -4,7 +4,6 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
-
 export default function CheckoutForm() {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
@@ -16,7 +15,7 @@ export default function CheckoutForm() {
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     window
-      .fetch(`http://localhost:5000/api/charge/create-checkout-session/${sessionStorage.getItem("price")}`, {
+      .fetch("http://localhost:5000/api/charge/create-checkout-session", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -72,7 +71,7 @@ export default function CheckoutForm() {
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
-      <button class="paybutton"
+      <button
         disabled={processing || disabled || succeeded}
         id="submit"
       >

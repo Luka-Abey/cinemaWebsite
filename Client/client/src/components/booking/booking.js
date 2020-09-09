@@ -73,6 +73,7 @@ export default class booking extends Component{
         axios.post(`http://localhost:5000/api/bookings`, data)
         .then((res) => {
             console.log(res)
+            window.alert("Booking succesful, please pay to complete booking")
             this.setState({
                 email: "",
                 chosenSeats: {},
@@ -115,6 +116,26 @@ export default class booking extends Component{
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" placeholder="name@example.com" name="email" onChange={this.handleChange} value={this.state.email} required />
                     </Form.Group>
+                    <Form.Group controlId="exampleForm.ControlSelect1">
+                        <Form.Label>Adult Tickets:</Form.Label>
+                        <Form.Control as="select">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        </Form.Control>
+                    </Form.Group>
+                    <Form.Group controlId="exampleForm.ControlSelect1">
+                        <Form.Label>Child Tickets:</Form.Label>
+                        <Form.Control as="select">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        </Form.Control>
+                    </Form.Group>
                     Select a screen time:
                     <ul>
                     {
@@ -148,17 +169,19 @@ export default class booking extends Component{
                         )
                     }
                     </Form.Group>
-                    <button type="submit" class="btn btn-secondary btn-lg">
-                        Make Booking
-                    </button>
-                    </Form>
-                    <div class="row" style={{ paddingTop: "500px" }}>
-                    <div className="App">
+                    <Form.Group controlId="exampleForm.ControlInput1">
+                        <button type="submit" class="btn btn-secondary btn-lg">
+                            Make Booking
+                        </button>
+                    </Form.Group>
+                    </Form><br/>
+                    <div class="row">
+                        <div class = "col">
                         <Elements stripe={promise}>
-                        <CheckoutForm />
-                    </Elements>
-                    </div>
-            </div>
+                            <CheckoutForm />
+                        </Elements>
+                        </div>
+                        </div>
                 </div>
                 </div>
                 </div>
